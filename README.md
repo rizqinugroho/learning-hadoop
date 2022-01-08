@@ -38,8 +38,18 @@ Download hadoop images and start container
 
 This step will takes about 15-30 minutes depends on your network speed for docker to download all the images and configure the hadoop settings. 
 
+## Step 3 Verifying 
+
 When it done, we need to make sure all the container are running with issue the following command
 > $ docker ps
+
+Verify the name node
+> http://localhost:50070
+
+Verify Hue
+> http://localhost:8888/
+
+Default userid / passwod : admin/admin
 
 
 
