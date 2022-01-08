@@ -41,7 +41,6 @@ This step will takes about 15-30 minutes depends on your network speed for docke
 When it done, we need to make sure all the container are running with issue the following command
 > $ docker ps
 
-![Docker PS](https://ibb.co/yfPJYFn)
 
 
 
