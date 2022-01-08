@@ -27,7 +27,21 @@ c. Check for git installation
 
 If not installed follow this link, to install GIT (https://www.linode.com/docs/development/version-control/how-to-install-git-on-linux-mac-and-windows/)
 
-## Step 2 Download docker image
+## Step 2 Download docker compose 
+
+Git clone docker compose
+> $ git clone https://github.com/rizqinugroho/learning-hadoop.git <br>
+> $ cd learning-hadoop
+
+Download hadoop images and start container
+> $ docker-compose up -d
+
+This step will takes about 15-30 minutes depends on your network speed for docker to download all the images and configure the hadoop settings. 
+
+When it done, we need to make sure all the container are running with issue the following command
+> $ docker ps
+
+![Docker PS](https://ibb.co/yfPJYFn)
 
 
 
