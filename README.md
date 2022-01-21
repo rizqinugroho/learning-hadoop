@@ -88,14 +88,14 @@ Navigate to the container and execute it in an interactive way using the followi
 ## Step 5
 we need to create an input folder to host our sample-text.txt file. To do so, we will use hdfs command as follows;
 
->hdfs fs -mkdir -p /user/root/input
+>hdfs dfs -mkdir -p /user/root/input
 
 We added -p because we are creating a parent folder with its subsequent children.
 
 ## Step 6
 Copy the sample-text.txt file to the created folder using hdfs as follows;
 
->hdfs fs put sample-text.txt /user/root/input
+>hdfs dfs -put sample-text.txt /user/root/input
 
 ## Step 7
 Run the MapReduce job on our jar file using Hadoop jar to test the local cluster
@@ -113,7 +113,7 @@ It will take time to run the process, let's wait until it done
 
 ## Step 8
 Verify the result
-> hadoop fs -ls /user/root/output
+> hadoop dfs -ls /user/root/output
 
 You should see the result similiar like this. 
 > Found 2 items <br>

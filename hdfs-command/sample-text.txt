@@ -1,3 +1,1 @@
-halo ini saya sedang belajar mapreduceq
-disini saya akan mencoba menghitung kata menggunakan mapreduce
-saya senang sekali belajar di digital skola
+Hello World Bye World
