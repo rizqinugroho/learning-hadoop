@@ -140,14 +140,14 @@ services:
       volumes:
         - ./hue-overrides.ini:/usr/share/hue/desktop/conf/z-hue.ini
       depends_on:
-      - "database"
+      - "mysql"
       networks:
         net_pet:
           ipv4_address: 172.27.1.13
   
-  database:
+  mysql:
       image: mysql:5.7
-      container_name: database
+      container_name: mysql
       ports:
           - "33061:3306"
       command: --init-file /data/application/init.sql
@@ -179,9 +179,24 @@ services:
     environment:
       KAFKA_ADVERTISED_HOST_NAME: 172.27.1.16
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    links:
+      - waitzk
+      - zookeeper
     networks:
       net_pet:
-        ipv4_address: 172.27.1.16  
+        ipv4_address: 172.27.1.16
+  
+  waitzk:
+    image: aanand/wait
+    container_name: waitzk
+    links:
+        - zookeeper
+
+  waitkafka:
+    image: aanand/wait
+    container_name: waitkafka
+    links:
+      - kafka 
 
   streamsets:
     image: streamsets/datacollector:3.13.0-latest
@@ -189,7 +204,24 @@ services:
       - "18630:18630"
     networks:
       net_pet:
-        ipv4_address: 172.27.1.17  
+        ipv4_address: 172.27.1.17
+  
+  sqoop-server:
+    image: stratio/sqoop-server:latest
+    container_name: sqoopserver
+    ports:
+      - "8082:8080"
+    links:
+      - zookeeper
+      - mysql
+      - kafka
+      - waitkafka
+
+  sqoop-shell:
+    image: stratio/sqoop-shell:latest
+    container_name: sqoopshell
+    links:
+      - sqoop-server
 
 networks:
   net_pet:

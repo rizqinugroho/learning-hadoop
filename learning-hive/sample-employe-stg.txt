@@ -1,0 +1,5 @@
+1201|Rony|45000|Technical manager
+1202|Ahmad|45000|Proof reader
+1203|Sony|40000|Technical writer
+1204|Kirana|40000|Hr Admin
+1205|Kiranti|30000|Op Admin

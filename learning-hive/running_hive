@@ -1,0 +1,3 @@
+./bin/sqoop import --connect "jdbc:mysql://localhost/demo" --username root --password password --table student_details --target-dir="datanew" -m 3
+
+./bin/sqoop import "-Dorg.apache.sqoop.splitter.allow_text_splitter=true" --connect jdbc:mysql://localhost:3306/demo --username root --password password --table student_details --target-dir student_details --hive-import --create-hive-table --hive-table default.learning_sqoop -m 3
