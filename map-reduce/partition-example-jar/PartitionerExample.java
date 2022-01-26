@@ -1,6 +1,8 @@
-package partitionerexample;
+package digiskola;
 
 import java.io.*;
+
+import java.util.Arrays;
 
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.*;
@@ -22,13 +24,16 @@ public class PartitionerExample extends Configured implements Tool
       public void map(LongWritable key, Text value, Context context)
       {
          try{
-            String[] str = value.toString().split("\t", -3);
+            String[] str = value.toString().split("\\|", -3);
+            System.out.println("str : " + Arrays.toString(str));
+            
+            System.out.println("str : " + str[3]);
             String gender=str[3];
             context.write(new Text(gender), new Text(value));
          }
          catch(Exception e)
          {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
          }
       }
    }
@@ -41,10 +46,10 @@ public class PartitionerExample extends Configured implements Tool
       public void reduce(Text key, Iterable <Text> values, Context context) throws IOException, InterruptedException
       {
          max = -1;
-			
-         for (Text val : values)
+        for (Text val : values)
          {
-            String [] str = val.toString().split("\t", -3);
+            System.out.println("Reducer Value : " + val);
+            String [] str = val.toString().split("\\|", -3);
             if(Integer.parseInt(str[4])>max)
             max=Integer.parseInt(str[4]);
          }
@@ -60,9 +65,12 @@ public class PartitionerExample extends Configured implements Tool
    {
       @Override
       public int getPartition(Text key, Text value, int numReduceTasks)
-      {
-         String[] str = value.toString().split("\t");
+      {  
+         System.out.println("Value from partitioner " + value );
+         String[] str = value.toString().split("\\|", -3);
+         
          int age = Integer.parseInt(str[2]);
+         System.out.println("Key : " + key + "Value : " + age );
          
          if(numReduceTasks == 0)
          {
