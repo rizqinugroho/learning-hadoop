@@ -4,3 +4,10 @@ Item3|654|zone-2
 Item2|231|zone-3
 Item2|500|zone-3
 Item4||zone-4
+
+
+/content/spark-3.2.1-bin-hadoop2.7/python/pyspark
+
+No such file or directory: 
+'/content/spark-3.2.1-bin-hadoop2.7/python/pyspark/./bin/spark-submit': 
+'/content/spark-3.2.1-bin-hadoop2.7/python/pyspark/./bin/spark-submit'
